@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <title>Product Detail</title>
+</head>
+<body>
+    <h1>Product Detail</h1>
+    <a href="/products/">Back</a>
+    <table width="100%">
+        <tr>
+            <td valign="top">Description</td>
+            <td>{{data.description}}</td>
+        </tr>
+        <tr>
+            <td valign="top">Current Price</td>
+            <td>{{data.price}}</td>
+        </tr>
+        <tr>
+            <td valign="top">
+                Images
+            </td>
+            <td>
+                <table>
+                    {% for image_url in data.image_urls %}
+                            <tr>
+                                <td><img src={{image_url}}></td>
+                            </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                Prices
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>Price</td>
+                        <td>Created Date</td>
+                    </tr>
+                    {% for product_price in data.product_prices %}
+                            <tr>
+                                <td>{{product_price.price}}</td>
+                                <td>{{product_price.created_at}}</td>
+                            </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

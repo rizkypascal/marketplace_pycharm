@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <title>Product List</title>
+</head>
+<body>
+    <h1>Product list</h1>
+    <a href="/products/form/">Create a new product</a>
+    <table width="100%">
+        <tr>
+            <td>Link</td>
+            <td>Description</td>
+            <td>Price</td>
+            <td>Detail</td>
+        </tr>
+        {% for product in data %}
+           <tr>
+               <td>{{product.link}}(</td>
+               <td>{{product.description}}</td>
+               <td>{{product.price}}</td>
+               <td>
+                   <a href = '/products/{{product.id}}' >Show</a>
+               </td>
+           </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
