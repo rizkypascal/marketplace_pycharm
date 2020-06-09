@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.contrib import messages
-from .models import Product
-from .forms import ProductForm
+from django.core.exceptions import ObjectDoesNotExist
 from apps.products.serializers.product_serializer import ProductSerializer
 from apps.products.services.create import CreateProduct
-import json
+from .models import Product
+from .forms import ProductForm
+
 # Create your views here.
 
 def index(request):
@@ -30,7 +31,10 @@ def form(request):
     return render(request, 'product_form.html', {'form': form})
 
 def detail(request, id):
-    product = Product.objects.get(id=id)
+    try:
+        product = Product.objects.get(id=id)
+    except ObjectDoesNotExist:
+        raise Http404("Product does not exist")
     serializer = ProductSerializer(product)
     return render(request, 'product_detail.html',
-                  {'data': serializer.data})
+                    {'data': serializer.data})

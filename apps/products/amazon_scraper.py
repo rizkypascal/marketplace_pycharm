@@ -60,9 +60,10 @@ def scrape(url):
         return None
     extracted_dict =  e.extract(r.text)
     pattern = re.compile('[^https](.+?):\[[0-9]+,[0-9]+\]')
-    images = extracted_dict['images'].replace('"', '')
-    images = re.findall(pattern, images)
-    extracted_dict['images'] = images
+    if extracted_dict['images'] is not None:
+        images = extracted_dict['images'].replace('"', '')
+        images = re.findall(pattern, images)
+        extracted_dict['images'] = images
     if extracted_dict['price'] is None:
         extracted_dict['price'] = 'Unknown'
     return extracted_dict
