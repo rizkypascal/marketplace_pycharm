@@ -3,6 +3,9 @@
 ## Description
 Marketplace project example for python (django)
 
+## Live Version
+https://marketplace-py-app.herokuapp.com/products/
+
 ## Onboarding and Development Guide
 ### Prerequisites
 - Python3 3.7.7 (Primary)
@@ -47,6 +50,25 @@ $ python3 manage.py test apps.<dir>
 #### Console
 ```
 $ python3 manage.py shell
+```
+
+## Deployment
+**Make sure you have PostgreSQL installed**
+```
+$ brew install postgresql (OS X)
+$ sudo apt-get update && sudo apt-get install postgresql postgresql-contrib (Ubuntu)
+$ export PATH=/usr/lib/postgresql/X.Y/bin/:$PATH
+$ export LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
+```
+1. Sign up and login in Heroku (https://id.heroku.com/login)
+2. Configure Django Heroku (https://devcenter.heroku.com/articles/django-app-configuration)
+3. Getting started with Heroku (https://devcenter.heroku.com/articles/getting-started-with-python#set-up)
+4. Deploy the app (https://devcenter.heroku.com/articles/getting-started-with-python#deploy-the-app). Notes: only until `git push heroku master` step and make sure all the changes have been merged to master
+5. Post deployment activities:
+```
+$ heroku config:set SECRET_KEY='secret' //set all required envs
+$ heroku run python manage.py migrate //if there are any changes in database
+$ heroku run python manage.py createsuperuser //if this is the first time you set your admin
 ```
 
 ## Future Developments
