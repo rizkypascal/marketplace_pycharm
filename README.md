@@ -30,6 +30,7 @@ $ git clone git@github.com:rizkypascal/marketplace_pycharm.git
 $ cd marketplace_pycharm
 $ python3 -m venv env
 $ . env/bin/activate
+$ cp env.sample .env
 $ pip install -r requirements.txt
 $ pip manage.py makemigrations
 $ pip manage.py migrate
